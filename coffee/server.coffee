@@ -14,14 +14,13 @@ exports.start = ->
 
   wss.on 'connection', (ws) ->
     station.on 'data', (data) ->
-      ws.send data
+      try
+        ws.send data
+      catch error
+        console.log 'a ws failure caught'
 
   net
   .createServer (socket) ->
     socket.on 'data', (data) ->
       station.emit 'data', data.toString()
   .listen 8888
-
-exports.reload = (pattern) ->
-  client = net.connect port: 8888, ->
-    client.write 'hello from client'

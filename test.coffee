@@ -1,7 +1,12 @@
 
 station = require './coffee/server'
+net = require 'net'
 
 station.start()
-setTimeout ->
-  station.reload 'demo'
-, 1000
+
+do repeat = ->
+  setTimeout ->
+    client = net.connect port: 8888, ->
+      client.write 'repo/'
+    repeat()
+  , 4000
