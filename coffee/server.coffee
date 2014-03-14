@@ -4,7 +4,7 @@ net = require 'net'
 EventEmitter = require('events').EventEmitter
 WebSocketServer = require('ws').Server
 
-exports.start = ->
+launchServer = ->
 
   wss = new WebSocketServer port: 8887
   station = new EventEmitter
@@ -24,3 +24,23 @@ exports.start = ->
     socket.on 'data', (data) ->
       station.emit 'data', data.toString()
   .listen 8888
+
+exports.start = ->
+  client = net
+  .createServer()
+  .listen 8888
+  .once 'error', (error) ->
+    console.log '8888 token'
+  .once 'listening', ->
+    console.log 'launchServer'
+    client.close()
+  .once 'close', launchServer
+
+exports.reload = (pattern) ->
+  client = net.connect port: 8888, ->
+    client.write pattern
+  client.once 'listening', ->
+    setTimeout ->
+      client.destroy()
+      console.log 'close'
+    , 1000

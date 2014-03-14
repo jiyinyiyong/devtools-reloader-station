@@ -6,7 +6,6 @@ station.start()
 
 do repeat = ->
   setTimeout ->
-    client = net.connect port: 8888, ->
-      client.write 'repo/'
+    station.reload 'demo'
     repeat()
-  , 4000
+  , 1000
