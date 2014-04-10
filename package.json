@@ -1,8 +1,8 @@
 {
   "name": "devtools-reloader-station",
-  "version": "0.0.3",
-  "description": "devtools reloader station",
-  "main": "src/server.js",
+  "version": "0.0.4",
+  "description": "Devtools reloader station",
+  "main": "js/server.js",
   "dependencies": {
     "ws": "~0.4.31"
   },
@@ -19,12 +19,9 @@
     "reload"
   ],
   "author": "jiyinyiyong",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jiyinyiyong/devtools-reloader-station/issues"
   },
-  "homepage": "https://github.com/jiyinyiyong/devtools-reloader-station",
-  "bin": {
-    "devtools-reloader-station": "bin/server"
-  }
+  "homepage": "https://github.com/jiyinyiyong/devtools-reloader-station"
 }

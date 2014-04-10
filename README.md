@@ -10,17 +10,23 @@ npm install -g devtools-reloader-station
 
 ### Usage
 
+```coffee
+# load and start server
+station = require 'devtools-reloader-station'
+station.start()
+# trigger tab reload
+station.reload 'pieces of url'
 ```
-devtools-reloader-station &
-```
+
+Here's how I use it in my project: https://gist.github.com/jiyinyiyong/10336012
 
 Notice that you need [devtools-reloader-crx][crx] running in Chrome to use this.
 
 [crx]: https://github.com/jiyinyiyong/devtools-reloader-crx
 
-After that, run this to trigger a page reloading event:
+Or you may trigger reload event by yourself:
 
-```
+```coffee
 net = require 'net'
 pattern = 'http repo todolist'
 # patterns = pattern.split(' ')
@@ -32,4 +38,4 @@ The Chrome Extension will find all tabs whose urls contain the patterns and relo
 
 ### License
 
-ISC
+MIT

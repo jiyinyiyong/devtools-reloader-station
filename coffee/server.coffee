@@ -10,14 +10,14 @@ launchServer = ->
   station = new EventEmitter
 
   station.on 'data', (data) ->
-    console.log 'station got:', data
+    console.log 'tab reload:', data
 
   wss.on 'connection', (ws) ->
     station.on 'data', (data) ->
       try
         ws.send data
       catch error
-        console.log 'a ws failure caught'
+        console.log 'connection already closed'
 
   net
   .createServer (socket) ->
@@ -30,9 +30,9 @@ exports.start = ->
   .createServer()
   .listen 8888
   .once 'error', (error) ->
-    console.log '8888 token'
+    console.log 'already watching at 8888'
   .once 'listening', ->
-    console.log 'launchServer'
+    console.log 'start watching at 8888'
     client.close()
   .once 'close', launchServer
 
